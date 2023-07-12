@@ -1,3 +1,4 @@
+#include "I_Constants.h"
 int state = 0;
 
 long int liftoffTime;  // time of liftoff
@@ -5,14 +6,10 @@ long int apogeeTime;   // time of apogee
 long int landingTime;  // time of landing
 
 
-//sensors:
-double accX, accY, accZ;  //acelerometers
-double angX, angY, angZ;  //angular velocities
-double bar;               // barometer
-double temp;
+
 
 void setup() {
-//forse qua facciamo il discorso di vedere se si è resettato mid volo
+  //forse qua facciamo il discorso di vedere se si è resettato mid volo
 
 
   // state:
@@ -24,7 +21,11 @@ void setup() {
 }
 
 void loop() {
-
+  //sensors:
+  float accX, accY, accZ;  // acelerometers
+  float angX, angY, angZ;  // angular velocities
+  float bar;               // barometer
+  double temp;             // termometer
 
   if (state == 1 || state == 2 || state == 3) {  //legge i dati e li scrive su SD
 
@@ -96,9 +97,7 @@ void loop() {
     }
   }
 
-  if (state == 4) {  // LANDED
+  if (state == 4) {    // LANDED
     screamPosition();  // buzzer screams to help locate the rocket until button pressed
   }
 }
-
-
