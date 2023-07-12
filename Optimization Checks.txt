@@ -1,3 +1,4 @@
 - decide wether to use millis or micros in the PID.
 - decide wether to upload a set of data every 10Hz or save them in the internal memory and upload it every 10Hz (1 or 10 sets of data)
+- if needed, change readAcc('X') to readAccX to avoid useless "if", which is there for readability.
 - decide if it is woth it to work with int math (3.4 -> 3.5 *2 -> 7), losing precision but getting more speed (last straw)
