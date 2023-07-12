@@ -1,5 +1,5 @@
 #include "I_Constants.h"
-int state = 0;
+bool state = 0;
 
 long int liftoffTime;  // time of liftoff
 long int apogeeTime;   // time of apogee
@@ -22,6 +22,7 @@ void setup() {
 
 void loop() {
   //sensors:
+  
   float accX, accY, accZ;  // acelerometers
   float angX, angY, angZ;  // angular velocities
   float bar;               // barometer
