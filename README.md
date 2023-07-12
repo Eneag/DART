@@ -8,6 +8,9 @@ Naming conventions:
  - Constants: UPPER_CASE 	(all upper case and different words connected by '_' )
  - Tabs: C_Tab_Name		(letter in alphabetical order followed by name of the tab es:_Tab_Name)
 
+Other conventions:
+ - Avoid String class
+
 States:
  - 0: detect liftoff
  - 1: flight
