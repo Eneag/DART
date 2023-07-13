@@ -1,36 +1,9 @@
-//all that writes to SD use the function writeToSD, overloaded to take text, int or byte.
-void writeToSD(char[] text, char[] file) {  //writeToSD for text
-  TBD
-}
-void writeToSD(int number, char[] file) {  //writeToSD for int
-  TBD
-}
-void writeToSD(byte text char[] file) {  //writeToSD for bytes
+//file sistem consists of 2 files: Sensors.txt, State.txt
+
+void writeSensorsToSD(accX, accY, accZ, angX, angY, angZ,bar,temp) {
   TBD
 }
 
+void writeStateAndTimeToSD(byte byteState, long int time) { //es: 1;23459\n2;1123445\n
 
-void writeStateToSD(byte byteState) {
-  int intState = byteState
-    writeToSD(intState, "NON SO LA POSIZIONE");
-}
-
-void writeTimeToSD(char[] text, long int time) {
-  TBD
-}
-
-writeAccToSD(int accX, int accY, int accZ) {
-  TBD
-}
-
-writeAngToSD(int angX, int angY, int angZ) {
-  TBD
-}
-
-writeBarToSD(int bar) {
-  TBD
-}
-
-writeTempToSD(int temp) {
-  TBD
 }

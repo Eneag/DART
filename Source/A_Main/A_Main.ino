@@ -3,7 +3,6 @@ bool state = 0;
 
 long int liftoffTime;  // time of liftoff
 long int apogeeTime;   // time of apogee
-long int landingTime;  // time of landing
 
 
 
@@ -42,10 +41,7 @@ void loop() {
     bar = readBar();
     temp = readTemp();
 
-    writeAccToSD(accX, accY, accZ);  //two ways to do it, every 10Hz: either write only the 10th acc and ang or salve them all in an array and write all
-    writeAngToSD(angX, angY, angZ);
-    writeBarToSD(bar);
-    writeTempToSD(temp);
+    writeSensorsToSD(accX, accY, accZ, angX, angY, angZ,bar,temp);  //two ways to do it, every 10Hz: either write only the 10th acc and ang or salve them all in an array and write all
   }
 
 
@@ -57,8 +53,7 @@ void loop() {
       if (liftoffIsDetected() == true) {
         state = 1;
         liftoffTime = millis();
-        writeStateToSD(state);
-        writeTimeToSD("Liftoff time: ", liftoffTime);
+        writeStateAndTimeToSD(state,liftoffTime);
       }
     }
   }
@@ -71,8 +66,7 @@ void loop() {
     if (apogeeIsDetected() == true) {  //keeps flying until accelerometers notice decrease in speed OR after 7 seconds have passed since liftoffTime OR altimeters register predicted height
       state = 2;
       apogeeTime = millis();
-      writeStateToSD(state);
-      writeTimeToSD("Apogee time: ", apogeeTime);
+      writeStateAndTimeToSD(state,apogeeTime);
     }
   }
 
@@ -83,6 +77,7 @@ void loop() {
 
     if (parachuteIsEjected() == true) {  //keeps nose open until accelerometers notice decrease in speed OR after 4 seconds have passed since apogeeTime
       state = 3;
+      writeStateAndTimeToSD(state,millis());
     }
   }
 
@@ -90,11 +85,10 @@ void loop() {
 
   if (state == 3) {  // DESCENT
 
-    if (hasLanded() == true) {
+    if (hasLanded() == true) { //hasLanded decides if it has landed by accelerometers, or after 30 seconds from apogee
       state = 4;
       landingTime == millis();
-      writeStateToSD(state);
-      writeTimeToSD("Landing time: ", landingTime);
+      writeStateAndTimeToSD(state,millis());
     }
   }
 
